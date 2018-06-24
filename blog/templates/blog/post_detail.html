@@ -1,18 +1,24 @@
     {% extends 'blog/base.html' %}
+	{% load markdown_deux_tags %}
 
     {% block content %}
-        <div class="post">
+        <div class="post content-markdown">
 			{% if post.published_date %}
-				<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 				<div class="date">
 					{{ post.published_date }}
 				</div>
 			{% else %}
 				<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 			{% endif %}
+			{% if user.is_authenticated %}
+				<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 				<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+			{% endif %}
+			{%if post.image %}
+			<img src='{{post.image.url}}' class='img-responsive' />
+			{% endif %}
             <h1>{{ post.title }}</h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.text|markdown}}</p>
         </div>
 	<hr>
 	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
