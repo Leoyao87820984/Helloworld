@@ -2,7 +2,7 @@
 	{% load markdown_deux_tags %}
 
     {% block content %}
-        <div class="post content-markdown">
+        <div class="post">
 			{% if post.published_date %}
 				<div class="date">
 					{{ post.published_date }}
@@ -15,7 +15,7 @@
 				<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 			{% endif %}
             <h1>{{ post.title }}</h1>
-            <p>{{ post.text|markdown}}</p>
+            <div class='content-markdown'>{{ post.text}}</div>
         </div>
 	<hr>
 	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
