@@ -16,16 +16,18 @@
 			{% endif %}
             <h1>{{ post.title }}</h1>
             <div class='content-markdown'>{{ post.text}}</div>
+			<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
         </div>
 	<hr>
-	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+	<!--<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
 	{% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
     <div class="comment">
         <div class="date">
             {{ comment.created_date }}
             {% if not comment.approved_comment %}
-                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <div class="fb-comments" data-href="{% url 'comment_remove' pk=comment.pk %}" data-numposts="5"></div>
                 <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
             {% endif %}
         </div>
@@ -35,6 +37,6 @@
     {% endif %}
 	{% empty %}
     <p>No comments here yet :(</p>
-	{% endfor %}
+	{% endfor %}-->
     {% endblock %}
 	
