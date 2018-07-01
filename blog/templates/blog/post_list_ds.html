@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load markdown_deux_tags %}
+
+{% block content %}
+    {% for post in posts %}
+    {% if post.type == 'ds' %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.summary|linebreaksbr }}</p>
+            <!--<p>{{ post.text|markdown|linebreaksbr|truncatechars:20}}</p> 
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>-->
+        </div>
+    {% endif %}
+    {% endfor %}
+{% endblock content %}
