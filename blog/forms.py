@@ -7,8 +7,7 @@ class PostForm(forms.ModelForm):
 	text = forms.CharField(widget = PagedownWidget)
 	class Meta:
 		model = Post
-		fields = ['title', 'text','publish']
-		
+		fields = ['title', 'summary','text','publish', 'type']
 class CommentForm(forms.ModelForm):
 
 	class Meta:

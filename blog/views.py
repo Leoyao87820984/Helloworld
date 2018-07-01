@@ -5,13 +5,35 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 # Create your views here.
+def index(request):
+	return render(request, 'blog/index.html')
+
+
 def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 	return render(request, 'blog/post_list.html', {'posts':posts})
 
+def post_list_ds(request):
+	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	return render(request, 'blog/post_list_ds.html', {'posts':posts})
+
+def post_list_pd(request):
+	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	return render(request, 'blog/post_list_pd.html', {'posts':posts})
+
+def post_list_kg(request):
+	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	return render(request, 'blog/post_list_kg.html', {'posts':posts})
+
+def post_list_os(request):
+	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	return render(request, 'blog/post_list_os.html', {'posts':posts})
+
 def post_detail(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	return render(request, 'blog/post_detail.html', {'post': post})
+
+
 	
 @login_required
 def post_new(request):
