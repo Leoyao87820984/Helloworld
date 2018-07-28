@@ -3,7 +3,6 @@
 
 {% block content %}
     {% for post in posts %}
-    {% if post.type == 'os' %}
         <div class="post">
             <div class="date">
                 {{ post.published_date }}
@@ -13,6 +12,5 @@
             <!--<p>{{ post.text|markdown|linebreaksbr|truncatechars:20}}</p> 
             <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>-->
         </div>
-    {% endif %}
     {% endfor %}
 {% endblock content %}
